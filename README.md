@@ -43,16 +43,16 @@ No frills, just code. A single-page HTML/CSS/JS “arcade” with 12 quick two-p
 | ------------ | --------------------- | ------ |
 | Tug of War   | `A` vs `L`            | Canvas |
 | Click Duel   | Click left/right half | DOM    |
-| Dot Chase    | WASD vs ◀︎▲︎▼︎▶︎      | Canvas |
+| Dot Chase    | WASD vs ◀︎▲︎▼︎▶︎          | Canvas |
 | Grid Tactics | Click 5×5 grid        | DOM    |
 | Hex Duel     | Click hex cell        | Canvas |
-| Mirror Maze  | WASD vs ◀︎▲︎▼︎▶︎      | Canvas |
+| Mirror Maze  | WASD vs ◀︎▲︎▼︎▶︎          | Canvas |
 | Hot Potato   | `Q` vs `P`            | DOM    |
 | Typing Duel  | Keyboard              | DOM    |
-| Button Bash  | WASD vs ◀︎▲︎▼︎▶︎      | Canvas |
+| Button Bash  | WASD vs ◀︎▲︎▼︎▶︎          | Canvas |
 | Card Flip    | Click cards           | DOM    |
 | Pong         | W/S vs ↑/↓            | Canvas |
-| Snake Battle | WASD vs ◀︎▲︎▼︎▶︎      | Canvas |
+| Snake Battle | WASD vs ◀︎▲︎▼︎▶︎          | Canvas |
 
 ---
 
