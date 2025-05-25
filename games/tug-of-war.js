@@ -1,23 +1,39 @@
-let raf, ropeOffset = 0, p1 = 0, p2 = 0, container, ctx;
+// /games/tug-of-war.js
+
+let raf;
+let ropeOffset = 0;
+let p1 = 0;
+let p2 = 0;
+let container;
+let ctx;
 const WIN_DIST = 200;
+const listeners = [];
 
 export function init(parent) {
   container = parent;
   const cvs = document.createElement('canvas');
-  cvs.width = 600; cvs.height = 200;
-  parent.appendChild(cvs);
+  cvs.width = 600;
+  cvs.height = 200;
+  container.appendChild(cvs);
   ctx = cvs.getContext('2d');
 
-  // key handlers
   const onKey = e => {
-    if (e.key === 'a' || e.key === 'A') p1++;
-    if (e.key === 'l' || e.key === 'L') p2++;
-    ropeOffset = (p1 - p2);
+    const key = e.key.toLowerCase();
+    if (key === 'a') p1++;
+    else if (key === 'l') p2++;
+    ropeOffset = p1 - p2;
     checkWin();
   };
-  window.addEventListener('keydown', onKey);
-  listeners.push({el: window, ev:'keydown', fn:onKey});
 
+  window.addEventListener('keydown', onKey);
+  listeners.push({ el: window, ev: 'keydown', fn: onKey });
+
+  raf = requestAnimationFrame(loop);
+}
+
+function loop() {
+  update();
+  render();
   raf = requestAnimationFrame(loop);
 }
 
@@ -26,12 +42,14 @@ function update() {
 }
 
 function render() {
-  ctx.clearRect(0,0,600,200);
+  ctx.clearRect(0, 0, 600, 200);
+
   // draw rope
   const x = 300 + ropeOffset;
   ctx.fillStyle = '#444';
   ctx.fillRect(x - 100, 90, 200, 20);
-  // draw markers
+
+  // draw win markers
   ctx.fillStyle = '#f00';
   ctx.fillRect(300 - WIN_DIST - 5, 85, 10, 30);
   ctx.fillStyle = '#00f';
@@ -50,7 +68,7 @@ function end(msg) {
 
 export function destroy() {
   if (raf) cancelAnimationFrame(raf);
-  listeners.forEach(({el,ev,fn}) => el.removeEventListener(ev,fn));
+  listeners.forEach(({ el, ev, fn }) => el.removeEventListener(ev, fn));
   container.innerHTML = '';
 }
 
